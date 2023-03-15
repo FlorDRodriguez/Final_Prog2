@@ -17,7 +17,7 @@ CREATE TABLE users(
 CREATE TABLE categories(
     id INT(11) NOT NULL AUTO_INCREMENT,
     user_id INT(20) NOT NULL,
-    namee VARCHAR(20)  NOT NULL UNIQUE,
+    nameCat VARCHAR(20)  NOT NULL UNIQUE,
     PRIMARY KEY (id),
     CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -26,7 +26,7 @@ CREATE TABLE products(
     id INT(11) NOT NULL AUTO_INCREMENT,
     user_id INT(20) NOT NULL,
     category_id INT(20) NOT NULL,
-    namee VARCHAR(40) NOT NULL UNIQUE,
+    nameProd VARCHAR(40) NOT NULL UNIQUE,
     brand VARCHAR(20) NOT NULL,
     min_desc VARCHAR(40),
     quantity INT(11) NOT NULL,

@@ -6,22 +6,26 @@ const pool = require('../database'); //pool hace referencia a la conexion a la d
 
 const { isLoggedIn } = require('../lib/auth');//de ese archivo importo ese metodo
 
-//AGREGAR UN PRODUCTO
-router.get('/add_p', isLoggedIn, async (req, res) => {
-    res.render('products/add_p');
+//GET CUANDO NECESITO ACCEDER A INFORMACION
+router.get('/add_p/:category_id', isLoggedIn, async (req, res) => {
+    const { category_id } = req.params;
+    const { id } = req.user;
+    const categories = await pool.query('SELECT * FROM categories WHERE user_id = ?', [id, category_id]);
+    res.render('products/add_p', { categories, category_id });
 });
 
+
+//POST CUANDO NECESITO ENVIAR INFO AL SERVIDOR
 router.post('/add_p', isLoggedIn, async (req , res) =>{
-    const { namee, brand, min_desc, quantity, category_id } = req.body;//del objeto quiero esa prop
+    const { nameProd, brand, min_desc, quantity, category_id } = req.body;//del objeto quiero esa prop
     const newProduct = { //guardo los datos dentro de un nuevo objeto
-        namee,
+        nameProd,
         brand,
         min_desc,
         quantity,
         category_id,
         user_id: req.user.id
     };
-    
     await pool.query('INSERT INTO products set ?', [newProduct]);//guardo los datos en la db
     req.flash('success', 'Producto agregado exitosamente');
     res.redirect('/products/list_p');
@@ -31,7 +35,8 @@ router.post('/add_p', isLoggedIn, async (req , res) =>{
 //LISTAR LOS PRODUCTOS
 router.get('/list_p',isLoggedIn, async (req, res) => { //seria /products pero todos los product preceden con /product
     const products = await pool.query('SELECT * FROM products');
-    res.render('products/list_p', { products });//le pasa los links a esta vista
+    //const nameCat = await pool.query('SELECT namee as nameCat FROM categories');
+    res.render('products/list_p', { products });
 });
 
 
@@ -52,11 +57,12 @@ router.get('/edit/:id',isLoggedIn, async (req, res) => {
 });
 
 //ACTUALIZA LOS DATOS QUE SE MODIFICAN
-router.post('/edit_p/:id',isLoggedIn, async (req, res) => {
+router.post('/edit/:id',isLoggedIn, async (req, res) => {
     const { id } = req.params;
+    console.info("----", req.params, req.body)
     const { namee, brand, min_desc, quantity } = req.body; 
     const newProduct = {
-        namee,
+        nameProd,
         brand,
         min_desc,
         quantity

@@ -3,18 +3,18 @@
 <div class="container p-4">
     <div class="row">
         {{#each categories}}
-            <div class="col-md-3">
-
-                <div class="card"> 
-                    <div class="card-body col-auto" >
-
-                        <div class="row">
-                            <h3 class="card-title text-uppercase text-align-center">
-                                {{ namee }}
+            <div class="col-md-3 ">
+                <div class="card mb-3" > 
+                    <div class="card-body" >
+                        <div class="row center">
+                            <h3 class="card-title text-uppercase ">
+                                {{ nameCat }}
                             </h3>
-                            <li style="list-style: none"  class="align-right">
+                        </div>
+                        <div class="icono_c">
+                            <li style="list-style: none">
                                 <a class="navbar-toggler" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                                    <i class="bi bi-three-dots-vertical"></i>
+                                    <i class="bi bi-three-dots-vertical" style="color: rgba(0,0,0,.54);"></i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/categories/delete/{{ id }}">Eliminar</a>
@@ -23,22 +23,40 @@
                                 </div>
                             </li>
                         </div>
-
-                        <a href="../products/add_p">
-                            <i class="bi bi-plus-circle-fill"></i>
-                        </a>
-                        
+                        <div style="text-align: right;">
+                            <a href="../products/add_p/{{ id }}">
+                                <i class="bi bi-plus-circle-fill fa-2x"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
             </div>
         {{else}} {{!Si no hay ninguna categoria envia un mje}}
-            <div class="col-md-4 mx-auto">
-                <div class="card card-body text-center">
-                    <p>No hay categorias creadas aún</p>
-                    <a href="/categories/add_c">¡Agrega una categoria!</a>
-                </div>
+            <div class="col-md-4 mx-auto text-center">
+                <img src="/img/lista.png" alt="lista" class="imglist mx-auto">
+                <h2 class="teaser">Crea tu primera lista. Haz tu compra más rápido y convenientemente.</h2>
+                <a type="button" class="btn btn-primary shadow" href="/categories/add_c">CREAR LISTA</a>
             </div>
         {{/each }}
     </div>
 </div>
+
+{{!MODAL
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    CREAR LISTA
+                </button>
+            </div>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Crear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+}}

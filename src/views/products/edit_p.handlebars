@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <form action="/products/edit/{{ product.id }}" method="POST">
                         <div class="form-group">
-                            <input type="text" value="{{ product.nombre }} " class="form-control" name="nombre" placeholder="Producto" autofocus>
+                            <input type="text" value="{{ product.nameProd }} " class="form-control" name="namee" placeholder="Producto" autofocus>
                         </div>
                         <div class="form-group">
                             <input type="text" value="{{ product.brand }} " class="form-control" name="brand" placeholder="Marca">
@@ -14,7 +14,7 @@
                             <input type="text" value="{{ product.min_desc }} " class="form-control" name="min_desc" placeholder="Descripción">
                         </div>
                         <div class="form-group">
-                            <input type="number" value="{{ product.quantity }}" id="quantity" name="Cantidad" min="1" max="100">
+                            <input type="number" value="{{ product.quantity }}" id="quantity" name="quantity" min="1" max="100">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-success btn-block">

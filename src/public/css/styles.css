@@ -16,8 +16,43 @@ a {
     font-family: calibri;
 }
 
-.img-index{
-    width:20%;
-    height:20%;
-    margin-bottom: auto;
-  }
+.brand-logo {
+    font-weight: bolder;
+    color: #fff;
+    font-size: 1.6rem;
+    
+}
+
+.teaser {
+    padding-top: 40px;
+    font-size: 20px;
+    line-height: 1.2;
+    max-width: 415px;
+    text-align: center;
+    color: rgba(0,0,0,.54);
+}
+
+.imglist {
+    height: 132px;
+    max-width: 90%;
+    margin-top: 66px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.icono_p{ 
+    position: relative;
+    top: -50px;
+    left: 100px;
+} 
+
+.icono_c { 
+    position: relative;
+    top: -20px;
+    left: 50px;
+} 

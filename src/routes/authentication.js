@@ -34,7 +34,6 @@ router.post('/signin', isNotLoggedIn, passport.authenticate('local.signin', {
         failureFlash: true
 }));
 
-
 //PERFIL
 router.get('/profile', isLoggedIn, (req, res) => {
     res.render('profile');

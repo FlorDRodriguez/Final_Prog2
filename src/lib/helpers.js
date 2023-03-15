@@ -8,13 +8,13 @@ helpers.encryptPassword = async (password) => { //password es la contraseña que
     const salt = await bcrypt.genSalt(10);//se ejecuta 10 veces. mientras mas veces se ejecute mas segura sera la contraseña
      //gensalt es p generar un hash(algoritmo matematico p encriptar)
     const hash = await bcrypt.hash(password, salt); //aca empieza a cifrar
-    return hash;
+    return hash
 };
 
 //al loguearse de nuevo hay q comparar la contraseña con la q se esta logueando con lo cifrado de la db
-helpers.matchPassword = async (password, savedPssword) => {
+helpers.matchPassword = async (password, savedPassword) => {
     try {
-        return await bcrypt.compare(password, savedPssword)
+        return await bcrypt.compare(password, savedPassword);
     } catch(e) {
         console.log(e);
     }

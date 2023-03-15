@@ -12,9 +12,9 @@ router.get('/add_c', isLoggedIn, (req, res) => {
 });
 
 router.post('/add_c', isLoggedIn, async (req , res) =>{
-    const { namee } = req.body;//del objeto quiero esa prop
+    const { nameCat } = req.body;//del objeto quiero esa prop
     const newCategory = { //guardo los datos dentro de un nuevo objeto
-        namee,
+        nameCat,
         user_id: req.user.id,
     };
     await pool.query('INSERT INTO categories set ?', [newCategory]);//guardo los datos en la db
@@ -34,8 +34,8 @@ router.get('/list_c',isLoggedIn, async (req, res) => { //seria /products pero to
 //ELIMINAR UN PRODUCTO
 router.get('/delete/:id', isLoggedIn, async (req, res) => {
     const { id } = req.params;//id que está pasando el usuario
+    await pool.query('DELETE FROM products WHERE category_id =?', [id]);
     await pool.query('DELETE FROM categories WHERE id = ?', [id]);//el ? es el paramentro que se le pasa a continuacion
-    //await pool.query('DELETE FROM products WHERE genre =?', [id]);
     req.flash('success', 'Lista eliminada exitosamente');
     res.redirect('/categories/list_c');
 });
@@ -52,9 +52,9 @@ router.get('/edit/:id',isLoggedIn, async (req, res) => {
 //ACTUALIZA LOS DATOS QUE SE MODIFICAN
 router.post('/edit_c/:id',isLoggedIn, async (req, res) => {
     const { id } = req.params;
-    const { namee } = req.body; 
+    const { nameCat } = req.body; 
     const newCategory = {
-        namee,
+        nameCat,
     };
     await pool.query('UPDATE categories set ? WHERE id = ?', [newCategory, id]);
     req.flash('success', 'Lista actualizada exitosamente');

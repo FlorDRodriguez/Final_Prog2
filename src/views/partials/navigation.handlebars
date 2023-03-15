@@ -1,9 +1,8 @@
 {{!creo toda la navegación y despues la exporto a main}}
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm header" style="background-color: #FFD484;">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <h5>GoMarket</h5>
+      <h5 class="brand-logo">GoMarket</h5>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -18,9 +17,11 @@
             Lista de Compras
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/categories/list_c">Ver Listas</a>
+              <a class="dropdown-item" href="/categories/list_c">Ver Categorias</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/categories/add_c">Agregar Lista</a>
+              <a class="dropdown-item" href="/products/list_p">Ver Productos</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/listMarket">Ver Lista</a>
             </div>
           </li>
 
