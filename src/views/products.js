@@ -35,22 +35,21 @@ router.post('/add_p', isLoggedIn, async (req , res) =>{
 //LISTAR LOS PRODUCTOS
 router.get('/list_p',isLoggedIn, async (req, res) => { //seria /products pero todos los product preceden con /product
     //const products = await pool.query('SELECT * FROM products');
-    const products = await pool.query('SELECT products.*, categories.id AS category_id, categories.nameCat AS nameCat FROM products JOIN categories ON products.category_id = categories.id ORDER BY nameCat');
+    const products = await pool.query('SELECT * FROM products JOIN categories ON products.category_id = categories.id ORDER BY nameCat');
     res.render('products/list_p', { products });
+    
 });
-
 
 //ELIMINAR UN PRODUCTO
 router.get('/delete/:id', isLoggedIn, async (req, res) => {
     const { id } = req.params;//id que está pasando el usuario
-    console.log(req.params);
-    await pool.query('DELETE FROM products WHERE id = ?', [id]);
+    await pool.query('DELETE FROM products WHERE id = ?', [id]);//el ? es el paramentro que se le pasa a continuacion
     req.flash('success', 'Producto quitado exitosamente');
     res.redirect('/products/list_p');
 });
 
 
-//EDITAR UN PRODUCTO
+/*EDITAR UN PRODUCTO
 router.get('/edit/:id',isLoggedIn, async (req, res) => {
     const { id } = req.params;//id que está pasando el usuario
     const products = await pool.query('SELECT * FROM products WHERE id = ?', [id]);//el ? es el paramentro que se le pasa a continuacion
@@ -71,6 +70,6 @@ router.post('/edit/:id',isLoggedIn, async (req, res) => {
     await pool.query('UPDATE products set ? WHERE id = ?', [newProduct, id]);
     req.flash('success', 'Producto actualizado exitosamente');
     res.redirect('/products/list_p');
-});
+});*/
 
 module.exports = router;
